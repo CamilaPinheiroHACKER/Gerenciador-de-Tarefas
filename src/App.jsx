@@ -11,22 +11,27 @@ import "./App.css";
 
 const App = () => {
 	const [tasks, setTasks] = useState([]);
+	const [listTarefas, setListTarefas] = useState();
 
 	useEffect(() => {
 		const fetchTasks = async () => {
 			const { data } = await axios.get(
-				"https://jsonplaceholder.cypress.io/todos?_limit=10"
-			);
+				"http://localhost:3001/getTask"
+			).then((response) =>{
+				setListTarefas(response.data);
+			});
 
 			setTasks(data);
+			
 		};
 
 		fetchTasks();
 	}, []);
 
 	const handleTaskClick = (taskId) => {
+		axios.post("http://localhost:3001/register")
 		const newTasks = tasks.map((task) => {
-			if (task.id === taskId) return { ...task, completed: !task.completed };
+			if (task.id === taskId) return { ...task, estado: !task.estado };
 
 			return task;
 		});
@@ -34,13 +39,13 @@ const App = () => {
 		setTasks(newTasks);
 	};
 
-	const handleTaskAddition = (taskTitle) => {
+	const handleTaskAddition = (taskTarefa) => {
 		const newTasks = [
 			...tasks,
 			{
-				title: taskTitle,
+				tarefa: taskTarefa,
 				id: uuidv4(),
-				completed: false,
+				estado: false,
 			},
 		];
 

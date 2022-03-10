@@ -1,26 +1,40 @@
 import React from "react";
-import { CgClose,} from "react-icons/cg";
+import { CgClose, CgFileDocument } from "react-icons/cg";
 import { useHistory } from "react-router-dom";
+import FormDialog from "./dialogForm";
 
 import "./Tasks.css";
 
-const Task = ({ task, handleTaskClick, handleTaskDeletion }) => {
+const Task = ({ task, props, handleTaskClick, handleTaskDeletion}) => {
 	const history = useHistory();
-
+	
 	const handleTaskDetailsClick = () => {
-		history.push(`/${task.title}`);
+		history.push(`/${task.tarefa}`);
 	};
+	const [open, setOpen] = React.useState(false);
+
+	const handleEditTarefas = () => {
+		setOpen(true);
+	}
 
 	return (
+		// <> função editar
+		// <FormDialog open={open} setOpen={setOpen} tarefa={props.tarefa} />
 		<div
 			className="task-container"
-			style={task.completed ? { borderLeft: "6px solid cyan" } : {}}
+			style={task.estado ? { borderLeft: "6px solid #00e6b8" } : {}}
 		>
-			<div className="task-title" onClick={() => handleTaskClick(task.id)}>
-				{task.title}
+			<div className="task-tarefa" onClick={() => handleTaskClick(task.id)}>
+				{task.tarefa}
 			</div>
 
 			<div className="buttons-container">
+			<button
+					className="edit-task-button"
+					onClick={() => handleEditTarefas(task.id)}
+				>
+					<CgFileDocument />
+				</button>
 				<button
 					className="remove-task-button"
 					onClick={() => handleTaskDeletion(task.id)}
@@ -29,6 +43,7 @@ const Task = ({ task, handleTaskClick, handleTaskDeletion }) => {
 				</button>
 			</div>
 		</div>
+		// </>
 	);
 };
 

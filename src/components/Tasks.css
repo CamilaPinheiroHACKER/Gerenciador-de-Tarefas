@@ -1,11 +1,11 @@
 .task-container {
-    background-color: #444;
+    background-color: rgba(68, 68, 68, 0.226);
     margin: 8px 0;
     padding: 15px 20px;
     display: flex;
     border-radius: 5px;
     justify-content: space-between;
-    color: #eee;
+    color: black;
     align-items: center;
 }
 
@@ -21,19 +21,19 @@
     border-radius: 5px;
     border: none;
     flex: 2;
-    background-color: #444; 
-    color: #eee;
+    background-color: rgba(68, 68, 68, 0.226); 
+    color: rgb(54, 53, 53);
     font-size: 16px;
 }
 
 .button {
-    background-color: cyan;
+    background-color: #00E6B8;
     height: 40px;
     padding: 0 10px;
     border-radius: 5px;
     width: 100%;
     font-size: 16px;
-    color: #444;
+    color: rgb(68, 68, 68);
     font-weight: bold;
     cursor: pointer;
     border: none;    
@@ -48,10 +48,11 @@
     cursor: pointer;
 }
 
-.remove-task-button {
-    background-color: #444;
+.remove-task-button, .edit-task-button {
+    background-color: rgba(68, 68, 68, 0);
     border: none;
     font-size: 16px;
-    color: cyan;
+    color: black;
+    cursor: pointer;
 }
 
